@@ -77,9 +77,9 @@ const content = {
       title: "Common Questions",
       subtitle: "Everything you wanted to know before installing",
       items: [
-        { q: "Is it free?", a: "We have a basic plan that is free forever. It includes up to 1000 words per day translation. The Pro version removes limits and adds voiceover." },
-        { q: "What languages are supported?", a: "Currently we support English ↔ Russian, Spanish, French, and German. Japanese and Chinese are in development." },
-        { q: "Does it work on YouTube?", a: "Yes! LingoShift works with subtitles on YouTube and Netflix, replacing individual words in real time." },
+        { q: "Is it free?", a: "Yes, the extension is completely free and does not charge any fees for any features." },
+        { q: "What languages are supported?", a: "We currently support English ↔ Russian pairs. Spanish and French are in development." },
+        { q: "Does this work everywhere?", a: "Yes! LingoShift works everywhere, replacing individual words in real time." },
         { q: "Can I disable it on specific sites?", a: "There is a 'Whitelist' in the extension. Just click the icon and select 'Do not translate this site'." }
       ]
     },
@@ -87,7 +87,7 @@ const content = {
       title: "Ready to level up?",
       subtitle: "Join 10,000+ users who are already learning languages on autopilot.",
       cta: "Install for Free",
-      note: "Works on Chrome, Edge, and Brave"
+      note: "Works on Chrome"
     }
   },
   ru: {
@@ -160,9 +160,9 @@ const content = {
       title: "Частые вопросы",
       subtitle: "Всё, что вы хотели узнать перед установкой",
       items: [
-        { q: "Это бесплатно?", a: "У нас есть базовый тариф, который бесплатен навсегда. Он включает перевод до 1000 слов в день. Pro-версия снимает лимиты и добавляет озвучку." },
-        { q: "Какие языки поддерживаются?", a: "На данный момент мы поддерживаем пары Английский ↔ Русский, Испанский, Французский и Немецкий. Японский и Китайский в разработке." },
-        { q: "Работает ли это на YouTube?", a: "Да! LingoShift умеет работать с субтитрами на YouTube и Netflix, заменяя отдельные слова в реальном времени." },
+        { q: "Это бесплатно?", a: "Да, полностью расширение бесплатное и не берет никакую оплату за какие либо функции." },
+        { q: "Какие языки поддерживаются?", a: "На данный момент мы поддерживаем пары Английский ↔ Русский.  Испанский, Французский в разработке." },
+        { q: "Работает ли это на везде?", a: "Да! LingoShift работает везде, заменяя отдельные слова в реальном времени." },
         { q: "Как отключить на определенных сайтах?", a: "В расширении есть 'Белый список'. Просто нажмите на иконку расширения и выберите 'Не переводить этот сайт'." }
       ]
     },
@@ -170,7 +170,7 @@ const content = {
       title: "Готовы прокачать язык?",
       subtitle: "Присоединяйтесь к 10,000+ пользователей, которые уже учат язык на автомате.",
       cta: "Установить бесплатно",
-      note: "Работает в Chrome, Edge и Brave"
+      note: "Работает в Chrome"
     }
   }
 };
@@ -196,7 +196,6 @@ const BackgroundBlobs = () => (
     <div className="absolute w-[400px] h-[400px] bg-pink-500/20 rounded-full blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />
   </div>
 );
-
 const ExtensionPopup = ({ t }: { t: any }) => (
   <motion.div 
     initial={{ scale: 0.8, opacity: 0 }}
@@ -205,16 +204,23 @@ const ExtensionPopup = ({ t }: { t: any }) => (
   >
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-lg shadow-sm">🌍</div>
+        <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-indigo-50">
+          <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-lg shadow-sm">🌍</div>
+        </div>
         <div>
-          <h2 className="text-sm font-bold text-slate-800 leading-none">LingoShift</h2>
+          <div className="flex items-center gap-1.5">
+
+             <h2 className="text-sm font-bold text-slate-800 leading-none">LingoShift</h2>
+          </div>
           <span className="text-[10px] text-slate-500 font-medium">{t.status}</span>
         </div>
       </div>
+
       <div className="w-9 h-5 bg-indigo-500 rounded-full p-0.5 cursor-pointer relative transition-colors shadow-inner">
         <motion.div layout className="bg-white w-4 h-4 rounded-full shadow-sm absolute right-0.5" />
       </div>
     </div>
+
     <div className="bg-slate-50/80 rounded-xl p-3 border border-slate-100">
       <div className="flex justify-between items-center mb-2">
         <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
@@ -233,12 +239,12 @@ const ExtensionPopup = ({ t }: { t: any }) => (
         />
       </div>
     </div>
+    
     <button className="w-full py-2 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:scale-[1.02] hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
       <Check size={12} /> {t.btn}
     </button>
   </motion.div>
 );
-
 const LingoTooltip = ({ original, translation, labels }: { original: string; translation: string; labels: any }) => (
   <motion.div 
     initial={{ opacity: 0, y: 15, scale: 0.9, rotateX: 15 }}
@@ -500,7 +506,12 @@ export default function Home() {
                 style={{ opacity: translationState, scale: translationState }}
                 className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm"
               >
-                <div className="font-bold text-[10px]">LS</div>
+                <div className="font-bold text-[10px]">
+          <img 
+            src="/logo16.png" 
+            alt="Logo" 
+            className="w-full h-full object-cover" 
+          /></div>
               </motion.div>
             </div>
 
@@ -616,7 +627,7 @@ export default function Home() {
              <div className="flex gap-6">
 <Link href="/privacy" className="hover:text-slate-600 transition-colors">Privacy</Link>
 <Link href="/support" className="hover:text-slate-600 transition-colors">Support</Link>
-                <a href="#" className="hover:text-slate-600 transition-colors">Twitter</a>
+                {/* <a href="#" className="hover:text-slate-600 transition-colors">Twitter</a> */}
              </div>
           </div>
         </div>
