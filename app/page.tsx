@@ -468,9 +468,6 @@ export default function Home() {
               <span>{t.hero.ctaDownload}</span>
               <div className="bg-white/20 p-1 rounded-md"><Globe size={18}/></div>
             </button>
-            <button className="px-8 py-4 bg-white/50 backdrop-blur-sm text-slate-900 border border-white/60 rounded-2xl font-bold text-lg hover:bg-white/80 transition-colors">
-              {t.hero.ctaDemo}
-            </button>
           </div>
         </motion.div>
       </section>
